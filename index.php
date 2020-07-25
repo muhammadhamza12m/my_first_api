@@ -1,1 +1,1 @@
-<? include("./app.js")?>
+<? include("./routes/api/questions.js")?>
