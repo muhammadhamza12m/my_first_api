@@ -11,5 +11,9 @@ router.get("/:id", async (req, res) => {
   let q = await question.findById(req.params.id);
   res.send(q);
 });
+router.delete("/:id", async (req, res) => {
+  let q = await question.findByIdAndDelete(req.params.id);
+  res.send(q);
+});
 
 module.exports = router;
