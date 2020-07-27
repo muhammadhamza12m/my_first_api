@@ -17,5 +17,4 @@ function validateInput(data) {
 }
 
 
-module.exports.ques = ques;
-module.exports.validate = validateInput;
+module.exports = ques;
