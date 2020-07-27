@@ -1,6 +1,6 @@
 const express = require("express");
 let router = express.Router();
-var {question,validate} = require("../../Models/question");
+var {question} = require("../../Models/question");
 
 
 router.get("/", async (req, res) => {
@@ -32,8 +32,8 @@ router.put("/:id", async (req, res) => {
 
 //Insert
 router.post("/", async (req, res) => {
-  let { error } = validate(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  // let { error } = validate(req.body);
+  // if (error) return res.status(400).send(error.details[0].message);
   let q = new question();
    q.name = req.body.name;
   q.course = req.body.course;
