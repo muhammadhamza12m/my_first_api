@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //update
-router.put("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
      let q = await question.findById(req.params.id);
   q.name = req.body.name;
   q.course = req.body.course;
