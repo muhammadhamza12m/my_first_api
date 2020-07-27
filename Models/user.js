@@ -8,7 +8,7 @@ var userSchema = mongoose.Schema({
 
 var user = mongoose.model("user", userSchema); 
 
-function validateInput(data) {
+function validateUserRegister(data) {
     const schema = Joi.object({
 
         name: Joi.string().max(10).min(3).required(),
@@ -19,7 +19,7 @@ function validateInput(data) {
     return schema.validate(data,{abortEarly:false});
 }
 
-function validateInputLogin(data) {
+function validateUserLogin(data) {
     const schema = Joi.object({
 
       email: Joi.string().max(10).min(1).required(),
@@ -32,4 +32,4 @@ function validateInputLogin(data) {
 
 module.exports.user = user;
 
-module.exports.validateInputLogin = validateInputLogin;
+module.exports.validateUserLogin = validateUserLogin;
