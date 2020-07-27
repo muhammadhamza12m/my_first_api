@@ -5,7 +5,7 @@ var quesSchema = mongoose.Schema({
     course: String,
 });
 
-var ques = mongoose.model("question", quesSchema); 
+var question = mongoose.model("question", quesSchema); 
 
 function validateInput(data) {
     const schema = Joi.object({
@@ -17,4 +17,4 @@ function validateInput(data) {
 }
 
 
-module.exports = ques;
+module.exports = question;
