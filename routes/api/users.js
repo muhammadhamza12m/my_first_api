@@ -19,13 +19,6 @@ router.post("/register", async (req, res) => {
 
 
 outer.post("/login", async (req, res) => {
-  let user = await User.findOne({ email: req.body.email });
-  if (!user) return res.status(400).send("User Not Registered");
-  let isValid = await bcrypt.compare(req.body.password, user.password);
-  if (!isValid) return res.status(401).send("Invalid Password");
-  let token = jwt.sign(
-    { _id: user._id, name: user.name },"someprivatekey"
-  );
-  res.send(token);
+  let user = await User.findOne({ email: req.
 });
 module.exports = router;
