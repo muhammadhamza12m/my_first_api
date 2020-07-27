@@ -33,7 +33,7 @@ router.put("/:id", async (req, res) => {
 //Insert
 router.post("/insert", async (req, res) => {
   let  error  = validate(req.body);
-  return res.status(400).send(error.details[0].message);
+  return res.(error);
   let q = new question();
    q.name = req.body.name;
   q.course = req.body.course;
