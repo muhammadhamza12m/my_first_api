@@ -1,6 +1,6 @@
 const express = require("express");
 let router = express.Router();
-var question = require("../../Models/question");
+var {question,validate} = require("../../Models/question");
 
 
 router.get("/", async (req, res) => {
@@ -30,12 +30,17 @@ router.put("/:id", async (req, res) => {
   res.send(q);
 });
 
-
+//Insert
 router.post("/", async (req, res) => {
-  let q = new question(req.body);
+  let { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+  let q = new question();
+   q.name = req.body.name;
+  q.course = req.body.course;
   await q.save();
   res.send(q);
 });
+//delete
 router.delete("/:id", async (req, res) => {
   let q = await question.findByIdAndDelete(req.params.id);
   res.send(q);
