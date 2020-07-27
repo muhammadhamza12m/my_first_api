@@ -32,4 +32,4 @@ function validateInputLogin(data) {
 
 module.exports.user = user;
 module.exports.validate = validateInput;
-module.exports.validate = validateInputLogin;
+module.exports.validateInputLogin = validateInputLogin;
