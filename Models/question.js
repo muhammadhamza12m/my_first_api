@@ -7,14 +7,4 @@ var quesSchema = mongoose.Schema({
 
 var ques = mongoose.model("question", quesSchema); 
 
-function validateInput(data) {
-    const schema = Joi.object({
-
-        name: Joi.string().max(10).min(3).required(),
-        course: Joi.string().max(10).min(1).required()
-    });
-    return schema.validate(data,{abortEarly:false});
-}
-
-
 module.exports = ques;
