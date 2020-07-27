@@ -9,6 +9,6 @@ router.post("/register", async (req, res) => {
     user.password = req.body.password;
     
   await user.save();
-  return res.send((user));
+  return res.send(user);
 });
 module.exports = router;
