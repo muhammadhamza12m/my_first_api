@@ -7,7 +7,7 @@ var quesSchema = mongoose.Schema({
 
 var ques = mongoose.model("question", quesSchema); 
 
-function validate(data) {
+function validateInput(data) {
     const schema = Joi.object({
 
         name: Joi.string().max(10).min(3).required(),
@@ -16,5 +16,5 @@ function validate(data) {
     return schema.validate(data,{abortEarly:false});
 }
 
-module.exports.validate = validate;
+module.exports.validateInput = validate;
 module.exports = ques;
