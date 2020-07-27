@@ -32,8 +32,8 @@ router.put("/:id", async (req, res) => {
 
 //Insert
 router.post("/", async (req, res) => {
-  let error = validate(req.body);
-  if(error) return res.status(400).send(error.details[0].message);
+  let  error  = validate(req.body);
+  return res.send(error);
   let q = new question();
    q.name = req.body.name;
   q.course = req.body.course;
