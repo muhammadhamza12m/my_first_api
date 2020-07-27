@@ -21,6 +21,16 @@ router.get("/:id", async (req, res) => {
   
 });
 
+//update
+router.put("/", async (req, res) => {
+     let q = await question.findById(req.params.id);
+  q.name = req.body.name;
+  q.course = req.body.course;
+  await q.save();
+  res.send(q);
+});
+
+
 router.post("/", async (req, res) => {
   let q = new question(req.body);
   await q.save();
