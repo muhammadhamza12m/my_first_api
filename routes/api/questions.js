@@ -1,16 +1,26 @@
 const express = require("express");
 let router = express.Router();
 var question = require("../../Models/question");
-const ObjectId = require("mongodb").ObjectID;
+
 
 router.get("/", async (req, res) => {
   let questions = await question.find();
   res.send(questions);
 });
+// get single 
 router.get("/:id", async (req, res) => {
-  let q = await question.findById(req.params.id);
-  res.send(q);
+
+  try {
+    let q = await question.findById(req.params.id);
+    if (!question) return res.status(400).send("Product with id in not available");
+    res.send(q);
+  } catch (err) {
+    
+    return res.status(400).send("INVALID ID");
+  }
+  
 });
+
 router.post("/", async (req, res) => {
   let q = new question(req.body);
   await q.save();
