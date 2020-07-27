@@ -16,5 +16,5 @@ function validateInput(data) {
     return schema.validate(data,{abortEarly:false});
 }
 
-module.exports.validateInput = validate;
+module.exports.validate = validateInput;
 module.exports = ques;
