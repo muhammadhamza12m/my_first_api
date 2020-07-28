@@ -32,4 +32,5 @@ function validateUserLogin(data) {
 
 module.exports.user = user;
 module.exports.validate = validateUserRegister;
-module.exports.validateUserLogin = validateUserLogin;
+module.exports.validateUserRegister = validateUserRegister;
+//module.exports.validateUserLogin = validateUserLogin;
