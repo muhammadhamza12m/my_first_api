@@ -32,13 +32,37 @@ router.put("/:id", async (req, res) => {
 
 //Insert
 router.post("/", async (req, res) => {
-   let  errorr  = validate(req.body);
-  if(errorr) return res.send(errorr);
-  let q = new question();
-   q.name = req.body.name;
-  q.course = req.body.course;
-  await q.save();
-  res.send(q);
+
+ // console.log(req.body.name);
+  //  let  errorr  = validate(req.body);
+  // if(errorr) return res.send(errorr);
+  // let q = new question();
+  //  q.name = req.body.name;
+  // q.course = req.body.course;
+  // console.log(q);
+  // await q.save();
+  // res.send(q);
+
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrites=true&w=majority";
+
+MongoClient.connect(url, function(err, db) {
+  if (err) throw err;
+  var dbo = db.db("quizapp");
+  var myobj = { name: req.body.name, course: req.body.course };
+  dbo.collection("question").insertOne(myobj, function(err, res) {
+    if (err) throw err;
+    console.log("1 document inserted");
+    //res.send(myobj);
+    db.close();
+  });
+});
+
+
+
+
+
+
 });
 //delete
 router.delete("/:id", async (req, res) => {
