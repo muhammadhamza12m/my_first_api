@@ -1,7 +1,7 @@
 var express = require('express');
 let router = express.Router();
 let { User } = require("../../Models/user");
-// var bcrypt = require("bcryptjs");
+var bcrypt = require("bcryptjs");
 // const _ = require("lodash");
 // const jwt = require("jsonwebtoken");
 
@@ -14,18 +14,12 @@ router.post("/register", async (req, res) => {
   user.password = req.body.password;
   await user.generateHashedPassword();
   await user.save();
-  return res.send(_.pick(user, ["name", "email"]));
+
+  return res.send(user);
 });
 
 
 router.post("/login", async (req, res) => {
-//   let user = await User.findOne({ email: req.body.email });
-//   if (!user) return res.status(400).send("User Not Registered");
-//   let isValid = await bcrypt.compare(req.body.password, user.password);
-//   if (!isValid) return res.status(401).send("Invalid Password");
-//   let token = jwt.sign(
-//     { _id: user._id, name: user.name },"someprivatekey"
-//   );
-//   res.send(token);
+  console.log("working");
 });
 module.exports = router;
