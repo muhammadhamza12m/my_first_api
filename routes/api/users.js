@@ -14,7 +14,7 @@ MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("hamza");
   var myobj = { name: req.body.name, email: req.body.email, password: req.body.password };
-  dbo.collection("accounts").findOne({ email: req.body.name }, function (err, result) {
+  dbo.collection("accounts").findOne({ email: req.body.email }, function (err, result) {
     console.log(result);
     if (!result)
     {
