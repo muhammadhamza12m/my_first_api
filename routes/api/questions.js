@@ -48,22 +48,20 @@ var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrite
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
-  var dbo = db.db("quizapp");
+    let  errorr  = validate(req.body);
+   if(errorr) return res.send(errorr);
+  var dbo = db.db("hamza");
   var myobj = { name: req.body.name, course: req.body.course };
-  dbo.collection("question").insertOne(myobj, function(err, res) {
+  dbo.collection("questions").insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
     //res.send(myobj);
     db.close();
-  });
+      });
+    });
 });
 
 
-
-
-
-
-});
 //delete
 router.delete("/:id", async (req, res) => {
   let q = await question.findByIdAndDelete(req.params.id);
