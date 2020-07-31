@@ -12,7 +12,7 @@ router.get("/:id", async (req, res) => {
 
   try {
     let q = await question.findById(req.params.id);
-    if (!question) return res.status(400).send("Product with id in not available");
+    if (!question) return res.status(400).send("ID in not available");
     res.send(q);
   } catch (err) {
     
@@ -24,8 +24,12 @@ router.get("/:id", async (req, res) => {
 //update
 router.put("/:id", async (req, res) => {
      let q = await question.findById(req.params.id);
-  q.name = req.body.name;
-  q.course = req.body.course;
+  q.quest = req.body.quest;
+  q.optionA = req.body.optionA;
+  q.optionB = req.body.optionB;
+  q.optionC = req.body.optionC;
+  q.optionD = req.body.optionD;
+  q.answer = req.body.answer;
   await q.save();
   res.send(q);
 });
@@ -43,22 +47,20 @@ router.post("/", async (req, res) => {
   // await q.save();
   // res.send(q);
 
-var MongoClient = require('mongodb').MongoClient;
+  var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrites=true&w=majority";
 
 MongoClient.connect(url, function(err, db) {
   if (err) throw err;
-    let  errorr  = validate(req.body);
-   if(errorr) return res.send(errorr);
   var dbo = db.db("hamza");
-  var myobj = { name: req.body.name, course: req.body.course };
+  var myobj = { quest: req.body.quest, optionA: req.body.optionA,optionB: req.body.optionB,optionC: req.body.optionC,optionD: req.body.optionD,answer: req.body.answer};
   dbo.collection("questions").insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
-    //res.send(myobj);
     db.close();
-      });
-    });
+  });
+});
+  
 });
 
 
