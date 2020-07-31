@@ -64,11 +64,7 @@ MongoClient.connect(url, async function(err, db) {
     console.log(result);
     db.close();
   });
-});
-
-
-  
- 
+}); 
 
   console.log("working");
 });
