@@ -50,7 +50,9 @@ router.post("/", async (req, res) => {
   var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrites=true&w=majority";
 
-MongoClient.connect(url, function(err, db) {
+  MongoClient.connect(url, function (err, db) {
+    let errors = validate(req.body);
+    return res.send(errors);
   if (err) throw err;
   var dbo = db.db("hamza");
   var myobj = { quest: req.body.quest, optionA: req.body.optionA,optionB: req.body.optionB,optionC: req.body.optionC,optionD: req.body.optionD,answer: req.body.answer};
