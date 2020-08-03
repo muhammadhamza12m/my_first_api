@@ -50,12 +50,13 @@ router.post("/", async (req, res) => {
   var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrites=true&w=majority";
 
-  MongoClient.connect(url, function (err, db) {
-    let errors = validate(req.body);
-    return res.send(errors);
-  if (err) throw err;
+  MongoClient.connect(url, async function (err, db) {
+
+    let { error } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+ 
   var dbo = db.db("hamza");
-  var myobj = { quest: req.body.quest, optionA: req.body.optionA,optionB: req.body.optionB,optionC: req.body.optionC,optionD: req.body.optionD,answer: req.body.answer};
+  var myobj = { quest:" req.body.quest", optionA: req.body.optionA,optionB: req.body.optionB,optionC: req.body.optionC,optionD: req.body.optionD,answer: req.body.answer};
   dbo.collection("questions").insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
