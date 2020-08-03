@@ -14,12 +14,12 @@ var question = mongoose.model("question", quesSchema);
 function validateInput(data) {
     const schema = Joi.object({
 
-        quest: Joi.string().max(10).min(3).required(),
-        optionA: Joi.string().max(10).min(1).required(),
-        optionB: Joi.string().max(10).min(1).required(),
-        optionC: Joi.string().max(10).min(1).required(),
-        optionD: Joi.string().max(10).min(1).required(),
-        answer: Joi.string().max(10).min(1).required(),
+        quest: Joi.string().max(60).min(3).required(),
+        optionA: Joi.string().max(50).min(1).required(),
+        optionB: Joi.string().max(50).min(1).required(),
+        optionC: Joi.string().max(50).min(1).required(),
+        optionD: Joi.string().max(50).min(1).required(),
+        answer: Joi.string().max(50).min(1).required(),
     });
     return schema.validate(data,{abortEarly:false});
 }
