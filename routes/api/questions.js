@@ -23,15 +23,22 @@ router.get("/:id", async (req, res) => {
 
 //update
 router.put("/:id", async (req, res) => {
-     let q = await question.findById(req.params.id);
-  q.question = req.body.quest;
-  q.optionA = req.body.optionA;
-  q.optionB = req.body.optionB;
-  q.optionC = req.body.optionC;
-  q.optionD = req.body.optionD;
-  q.answer = req.body.answer;
-  await q.save();
-  res.send(q);
+     
+  var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrites=true&w=majority";
+
+MongoClient.connect(url, async function(err, db) {
+  if (err) throw err;
+  var dbo =await db.db("hamza");
+  const myquery =await req.params.id;
+  console.log(myquery);
+  var newvalues = { $set: {answer: req.body.answer, question: req.body.quest } };
+  await dbo.collection("questions").updateOne(myquery, newvalues, function(err, res) {
+    if (err) throw err;
+    console.log("1 document updated");
+    db.close();
+  });
+});
 });
 
 //Insert
