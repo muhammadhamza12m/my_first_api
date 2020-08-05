@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 var quesSchema = mongoose.Schema({
-    question: String,
+    quest: String,
     optionA: String,
     optionB: String,
     optionC: String,
@@ -14,7 +14,7 @@ var question = mongoose.model("question", quesSchema);
 function validateInput(data) {
     const schema = Joi.object({
 
-        question: Joi.string().min(3).required(),
+        quest: Joi.string().min(3).required(),
         optionA: Joi.string().min(1).required(),
         optionB: Joi.string().min(1).required(),
         optionC: Joi.string().min(1).required(),
