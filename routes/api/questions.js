@@ -31,7 +31,7 @@ MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("hamza");
   var myquery = { question: req.body.question };
-  var newvalues = { $set: {question: "hamzabbb", address: "Canyon 123" } };
+  var newvalues = { $set: {question: "hamzabbb", address: "bbbbbbbbbbbbbbbbbbb" } };
   dbo.collection("questions").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;
     console.log("1 document updated");
