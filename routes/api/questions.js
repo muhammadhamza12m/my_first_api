@@ -62,7 +62,7 @@ var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrite
   if (error) return res.status(400).send(error.details[0].message);
  
   var dbo = db.db("hamza");
-  var myobj = { question: req.body.quest , optionA: req.body.optionA,optionB: req.body.optionB,optionC: req.body.optionC,optionD: req.body.optionD,answer: req.body.answer};
+  var myobj = { question: req.body.question , optionA: req.body.optionA,optionB: req.body.optionB,optionC: req.body.optionC,optionD: req.body.optionD,answer: req.body.answer};
   dbo.collection("questions").insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
