@@ -1,7 +1,7 @@
 const express = require("express");
 let router = express.Router();
 var {question, validate} = require("../../Models/question");
-
+const {ObjectId} = require('mongodb');
 
 router.get("/", async (req, res) => {
   let questions = await question.find();
@@ -22,18 +22,17 @@ router.get("/:id", async (req, res) => {
 });
 
 //update
-router.put("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
      
   var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrites=true&w=majority";
 
-MongoClient.connect(url, async function(err, db) {
+MongoClient.connect(url, function(err, db) {
   if (err) throw err;
-  var dbo =await db.db("hamza");
-  const myquery =await req.params.id;
-  console.log(myquery);
-  var newvalues = { $set: {answer: req.body.answer, question: req.body.quest } };
-  await dbo.collection("questions").updateOne(myquery, newvalues, function(err, res) {
+  var dbo = db.db("hamza");
+  var myquery = { question: req.body.question };
+  var newvalues = { $set: {question: "Mickey11111111", address: "Canyon 123" } };
+  dbo.collection("questions").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;
     console.log("1 document updated");
     db.close();
