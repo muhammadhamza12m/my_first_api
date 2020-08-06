@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //update
-router.put("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
      
   var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrites=true&w=majority";
@@ -31,7 +31,7 @@ MongoClient.connect(url, function(err, db) {
   if (err) throw err;
   var dbo = db.db("hamza");
   var myquery = { question: req.body.question };
-  var newvalues = { $set: {question: req.body.question, optionA: req.body.optionA } };
+  var newvalues = { $set: {question: "hamzabbb", address: "Canyon 123" } };
   dbo.collection("questions").updateOne(myquery, newvalues, function(err, res) {
     if (err) throw err;
     console.log("1 document updated");
