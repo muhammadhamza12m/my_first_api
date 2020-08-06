@@ -22,7 +22,7 @@ router.get("/:id", async (req, res) => {
 });
 
 //update
-router.put("/:id", async (req, res) => {
+router.put("/", async (req, res) => {
      
   var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrites=true&w=majority";
