@@ -66,6 +66,7 @@ var url = "mongodb+srv://usman:usman@cluster0.gkwas.mongodb.net/hamza?retryWrite
   dbo.collection("questions").insertOne(myobj, function(err, res) {
     if (err) throw err;
     console.log("1 document inserted");
+    return res.send("Inserted");
     db.close();
   });
 });
